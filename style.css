@@ -224,3 +224,14 @@
         height: 100vh;
     }
 }
+.error-info{
+   display: none;
+   flex-direction: column;
+   gap: 15px;
+   align-items: center;
+   margin-top: 5rem;
+}
+.error-info.active
+{
+    display: flex;
+}
