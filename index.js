@@ -5,6 +5,8 @@ const grantAccess=document.querySelector(".grant-location-container");
 const searchForm=document.querySelector("[data-searchForm]");
 const loadingScreen=document.querySelector(".loading-container");
 const userInfoContainer=document.querySelector(".user-info-container");
+const errorInfo=document.querySelector(".error-info");
+console.log(errorInfo);
 let currentTab=userTab;
 const API_key='36b5e1986972b661834d4e17d0204359';
 currentTab.classList.add("current-tab");
@@ -16,6 +18,7 @@ function switchTab(clickedTab)
       currentTab.classList.remove("current-tab");
       currentTab=clickedTab;
       currentTab.classList.add("current-tab"); 
+      errorInfo.classList.remove("active");
       if(!searchForm.classList.contains("active"))
       {
         grantAccess.classList.remove("active");
@@ -119,6 +122,7 @@ searchTab.addEventListener("click",()=>{
 
  searchButton.addEventListener("click",(e)=>{
     let cityName=searchInput.value;
+    errorInfo.classList.remove("active");
     if(cityName==="")
     return;
     else
@@ -132,13 +136,20 @@ async function fetchSearchWeatherInfo(city)
         try
         {
           const response=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_key}`);
+          if(response.status==404)
+          {
+            loadingScreen.classList.remove("active");
+            errorInfo.classList.add("active");
+          }
+          else{
           const data=await response.json();
           loadingScreen.classList.remove("active");
           userInfoContainer.classList.add("active");
           renderweatherInfo(data);
+          }
         }
         catch(err)
         {
-           userInfoContainer.classList.remove("active");
+          
         }
 }
