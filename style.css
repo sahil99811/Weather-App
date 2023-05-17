@@ -206,10 +206,14 @@
 }
 @media only screen and (max-width: 600px) {
     .parameter-container {
-      flex-direction: column;
+        flex-wrap: wrap;
     }
     .parameter
     {
         width: 100%;
+    }
+    .wrapper
+    {   
+        height: 130%;
     }
 }
