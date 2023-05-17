@@ -204,7 +204,7 @@
     border-radius: 50%;
     background-color: rgba(98, 93, 93, 0.31);
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
     .parameter-container {
         flex-wrap: wrap;
     }
@@ -214,6 +214,13 @@
     }
     .wrapper
     {   
-        height: 130%;
+        height: 170vh;
+    }
+}
+@media only screen and (min-width: 600px) {
+   
+    .wrapper
+    {   
+        height: 100vh;
     }
 }
